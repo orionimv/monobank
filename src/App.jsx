@@ -3,12 +3,11 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// Импорты
 import Login from './pages/Login';
 import MainLayout from './pages/MainLayout';
 import Home from './pages/Home';
 import Cards from './pages/Cards';
-import Transactions from './pages/History'; // Используем History.jsx как Transactions
+import Transactions from './pages/History';
 import Payroll from './pages/Payroll';
 import Loans from './pages/Loans';
 import Cashback from './pages/Cashback';
