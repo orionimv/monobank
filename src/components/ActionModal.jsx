@@ -33,14 +33,12 @@ const ActionModal = ({ show, onHide, title, children }) => {
             style={{ backgroundColor: overlayBg }}
             onClick={handleClose}
         >
-            {/* Само модальное окно */}
             <div
                 className={`bg-white p-6 rounded-lg shadow-xl w-full max-w-md mx-4 text-gray-900 
                     transition-all duration-300 ease-in-out transform 
                     ${isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Шапка окна */}
                 <div className="flex justify-between items-center mb-4 border-b pb-3">
                     <h3 className="text-xl font-semibold">{title}</h3>
                     <button
@@ -51,7 +49,6 @@ const ActionModal = ({ show, onHide, title, children }) => {
                     </button>
                 </div>
 
-                {/* Содержимое окна */}
                 <div>
                     {children}
                 </div>

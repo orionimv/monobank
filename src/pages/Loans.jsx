@@ -12,7 +12,6 @@ const initialLoans = [
     { id: 'l1', title: 'Розстрочка на MacBook', amountLeft: 30150, paid: 19850, total: 50000, nextPayment: 5000 },
 ];
 
-// НАЧАЛЬНЫЕ БАНКИ
 const initialDeposits = [
     { id: 'd1', title: 'На відпустку', icon: '🌴', current: 40500, goal: 100000, rate: 5 },
     { id: 'd2', title: 'На машину', icon: '🚗', current: 150000, goal: 500000, rate: 7 },
