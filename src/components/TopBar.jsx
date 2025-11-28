@@ -1,81 +1,75 @@
-// src/components/TopBar.jsx
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { BsArrowDown, BsArrowUp, BsSearch } from 'react-icons/bs';
+import { BsSearch, BsBell, BsPersonCircle } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom'; // 1. Імпортуємо навігацію
 
 const TopBar = () => {
-    const { user, logout } = useAuth();
-
-    const getTopNavLinkClass = ({ isActive }) => {
-        const baseClasses = "px-4 py-2 text-sm font-medium rounded-md transition-colors";
-        return isActive
-            ? `${baseClasses} bg-gray-600 text-white`
-            : `${baseClasses} text-gray-300 hover:bg-gray-600`;
-    };
+    const navigate = useNavigate();
 
     return (
-        <div className="flex items-center justify-between w-full h-16 px-6 bg-gray-800 border-b border-gray-700 text-sm">
+        <div className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white shadow-md">
 
-            <div className="flex items-center space-x-8">
-                <div className="flex items-baseline space-x-2">
-                    <span className="text-2xl font-bold text-white">monobank</span>
-                    <span className="text-lg font-light text-gray-400">| Web</span>
+            {/* Ліва частина: Логотип + Курси валют */}
+            <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-2">
+                    <span className="text-2xl font-bold tracking-wider">monobank</span>
+                    <span className="text-xs text-gray-400 border-l border-gray-600 pl-2">WEB</span>
                 </div>
 
-                <div className="flex items-center space-x-4 text-sm">
-                    <div className="flex items-center space-x-1 text-gray-300">
-                        <span>USD: 39.80</span>
-                        <BsArrowDown className="text-red-500" />
+                <div className="hidden lg:flex items-center space-x-4 text-xs text-gray-300">
+                    <div className="flex flex-col">
+                        <span>USD</span>
+                        <span className="font-bold text-white">39.80</span>
                     </div>
-                    <span className="text-gray-600">|</span>
-                    <div className="flex items-center space-x-1 text-gray-300">
-                        <span>EUR: 41.50</span>
-                        <BsArrowUp className="text-green-500" />
+                    <div className="flex flex-col">
+                        <span>EUR</span>
+                        <span className="font-bold text-white">41.50</span>
                     </div>
-                    <span className="text-gray-600">|</span>
-                    <div className="flex items-center space-x-1 text-gray-300">
-                        <span>BTC: 248.5k</span>
-                        <BsArrowUp className="text-green-500" />
+                    <div className="flex flex-col">
+                        <span>BTC</span>
+                        <span className="font-bold text-white">248.5k</span>
                     </div>
                 </div>
             </div>
 
-            <div className="flex items-center space-x-1 bg-gray-700 rounded-lg p-1">
-                <NavLink
-                    to="/money-transfer"
-                    className={getTopNavLinkClass}
+            <div className="hidden md:flex items-center space-x-1 bg-gray-700/50 p-1 rounded-lg">
+                <button
+                    onClick={() => navigate('/money-transfer')}
+                    className="px-4 py-2 text-sm font-medium hover:bg-gray-600 rounded-md transition-colors"
                 >
                     Переказати
-                </NavLink>
-                <NavLink
-                    to="/charge-phone"
-                    className={getTopNavLinkClass}
+                </button>
+                <button
+                    onClick={() => navigate('/replenish-card')}
+                    className="px-4 py-2 text-sm font-medium hover:bg-gray-600 rounded-md transition-colors"
                 >
-                    Поповнити рахунок
-                </NavLink>
-                <NavLink
-                    to="/replenish-card"
-                    className={getTopNavLinkClass}
+                    Поповнити
+                </button>
+                <button
+                    onClick={() => navigate('/bank-services')}
+                    className="px-4 py-2 text-sm font-medium hover:bg-gray-600 rounded-md transition-colors"
                 >
-                    Поповнити картку
-                </NavLink>
+                    Інше
+                </button>
             </div>
 
             <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-300">Вітаю, {user?.name || 'User'}!</span>
-                <button className="text-gray-400 hover:text-white">
-                    <BsSearch className="text-lg" />
+                <div className="hidden md:flex items-center space-x-2 text-right">
+                    <div className="text-xs text-gray-400">Вітаю,</div>
+                    <div className="text-sm font-bold">Максим!</div>
+                </div>
+
+                <button className="p-2 hover:bg-gray-700 rounded-full text-gray-300 hover:text-white transition">
+                    <BsSearch size={18} />
                 </button>
 
-                <button onClick={logout} className="block relative" title="Вийти">
-                    <img
-                        src={user?.photo}
-                        alt="Profile"
-                        className="w-9 h-9 rounded-full border-2 border-gray-600"
-                    />
-                    <span className="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-gray-800"></span>
+                <button className="p-2 hover:bg-gray-700 rounded-full text-gray-300 hover:text-white transition relative">
+                    <BsBell size={18} />
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
+
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center overflow-hidden border-2 border-gray-700 cursor-pointer">
+                    <BsPersonCircle size={20} />
+                </div>
             </div>
         </div>
     );
