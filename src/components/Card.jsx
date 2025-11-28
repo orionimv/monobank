@@ -52,7 +52,7 @@ const Card = ({ cardData, onClick, isSelected }) => {
                     ${themeClasses} ${selectionClasses} transition-all duration-300`}
             >
                 <div>
-                    <span className={`text-sm font-light ${secondaryText}`}>Total Balance</span>
+                    <span className={`text-sm font-light ${secondaryText}`}>Баланс</span>
                     <div className="text-3xl font-bold">
                         {cardData.balance}
                         <span className={`text-xl ml-2 ${balanceText}`}>
@@ -65,7 +65,7 @@ const Card = ({ cardData, onClick, isSelected }) => {
                 </div>
                 <div className="flex justify-between items-end">
                     <div>
-                        <span className={`text-xs ${secondaryText}`}>Expiry</span>
+                        <span className={`text-xs ${secondaryText}`}>Термін дії</span>
                         <div className="font-medium">{cardData.expiry}</div>
                     </div>
                     <div>{getLogo(cardData.logo)}</div>
